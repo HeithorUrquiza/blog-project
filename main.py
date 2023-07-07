@@ -31,7 +31,7 @@ gravatar = Gravatar(app,
                     )
 
 ##CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:\\Users\\heith\\Documents\\GitHub\\.py\\Projects\\Advanced\\blog-with-users\\blog.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:\\Users\\heith\\Documents\\GitHub\\blog-project\\blog.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
