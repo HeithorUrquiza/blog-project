@@ -11,12 +11,11 @@ from functools import wraps
 from sqlalchemy.ext.declarative import declarative_base
 from flask_gravatar import Gravatar
 from forms import *
-from dotenv import load_dotenv
 import os
 
-load_dotenv()
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+secret_key = os.urandom(24).hex()
+app.config['SECRET_KEY'] = secret_key
 ckeditor = CKEditor(app)
 Bootstrap(app)
 Base = declarative_base()
