@@ -14,8 +14,7 @@ from forms import *
 import os
 
 app = Flask(__name__)
-secret_key = os.urandom(24).hex()
-app.config['SECRET_KEY'] = secret_key
+app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
 ckeditor = CKEditor(app)
 Bootstrap(app)
 Base = declarative_base()
@@ -30,7 +29,7 @@ gravatar = Gravatar(app,
                     )
 
 ##CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:\\Users\\heith\\Documents\\GitHub\\blog-project\\blog.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL", 'sqlite:///C:\\Users\\heith\\Documents\\GitHub\\blog-project\\blog.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -84,7 +83,7 @@ class Comment(db.Model, Base):
     parent_post = relationship("BlogPost", back_populates="comments")
     text = db.Column(db.String(250), nullable=True)
     
-db.create_all()
+#db.create_all()
 
 
 @app.route('/')
